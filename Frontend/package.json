@@ -1,0 +1,91 @@
+{
+  "name": "material-app",
+  "version": "3.0.0",
+  "description": "Material App Pro - React Admin & Dashboard Template",
+  "author": "Bootlab <support@bootlab.io>",
+  "private": true,
+  "license": "https://material-ui.com/store/license/",
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "eject": "craco eject",
+    "lint": "eslint src --ext .js,.jsx --fix"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "Firefox ESR",
+    "not dead",
+    "not IE 11"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "dependencies": {
+    "@auth0/auth0-spa-js": "1.17.0",
+    "@craco/craco": "6.2.0",
+    "@date-io/date-fns": "2.11.0",
+    "@fullcalendar/core": "5.9.0",
+    "@fullcalendar/daygrid": "5.9.0",
+    "@fullcalendar/interaction": "5.9.0",
+    "@fullcalendar/react": "5.9.0",
+    "@material-ui/core": "5.0.0-beta.5",
+    "@material-ui/icons": "5.0.0-beta.5",
+    "@material-ui/lab": "5.0.0-alpha.44",
+    "@material-ui/styled-engine-sc": "5.0.0-beta.5",
+    "@material-ui/styles": "5.0.0-beta.5",
+    "@material-ui/system": "5.0.0-beta.5",
+    "@mui/x-data-grid": "^4.0.0",
+    "@reduxjs/toolkit": "1.6.1",
+    "axios": "0.21.1",
+    "axios-mock-adapter": "1.20.0",
+    "chart.js": "3.5.1",
+    "css-vendor": "2.0.8",
+    "date-fns": "2.23.0",
+    "deepmerge": "4.2.2",
+    "faker": "5.5.3",
+    "firebase": "8.10.0",
+    "formik": "2.2.9",
+    "google-map-react": "2.1.10",
+    "history": "5.0.1",
+    "i18next": "20.4.0",
+    "jsonwebtoken": "8.5.1",
+    "jss": "10.7.1",
+    "jwt-decode": "3.1.2",
+    "polished": "4.1.3",
+    "react": "17.0.2",
+    "react-app-polyfill": "2.0.0",
+    "react-chartjs-2": "3.0.4",
+    "react-dom": "17.0.2",
+    "react-dragula": "1.1.17",
+    "react-feather": "2.0.9",
+    "react-helmet-async": "1.1.2",
+    "react-i18next": "11.11.4",
+    "react-jvectormap": "0.0.16",
+    "react-perfect-scrollbar": "1.5.8",
+    "react-quill": "1.3.5",
+    "react-redux": "7.2.4",
+    "react-router-dom": "6.0.0-beta.2",
+    "react-scripts": "4.0.3",
+    "react-syntax-highlighter": "15.4.4",
+    "redux": "4.1.1",
+    "redux-thunk": "2.3.0",
+    "styled-components": "5.3.1",
+    "web-vitals": "2.1.0",
+    "yup": "0.32.9"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "7.15.0",
+    "craco-alias": "3.0.1",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-plugin-prettier": "3.4.1",
+    "prettier": "2.3.2",
+    "redux-devtools-extension": "2.13.9"
+  },
+  "resolutions": {
+    "jss": "10.7.1"
+  }
+}
