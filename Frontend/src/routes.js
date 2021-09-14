@@ -111,16 +111,16 @@ const GoogleMaps = async(() => import("./pages/maps/GoogleMaps"));
 const VectorMaps = async(() => import("./pages/maps/VectorMaps"));
 
 const routes = [
-  // {
-  //   path: "/auth",
-  //   element: <PresentationLayout />,
-  //   children: [
-  //     {
-  //       path: "",
-  //       element: <Landing />,
-  //     },
-  //   ],
-  // },
+  {
+    path: "/",
+    element: <PresentationLayout />,
+    children: [
+      {
+        path: "",
+        element: <Landing />,
+      },
+    ],
+  },
   // {
   //   path: "dashboard",
   //   element: <DashboardLayout />,
@@ -220,15 +220,15 @@ const routes = [
   //   ],
   // },
   {
-    path: "/",
+    path: "/user",
     element: <AuthLayout />,
     children: [
       {
-        path: "sign-in",
+        path: "signin",
         element: <SignIn />,
       },
       {
-        path: "sign-up",
+        path: "signup",
         element: <SignUp />,
       },
       {
@@ -473,20 +473,20 @@ const routes = [
   //     },
   //   ],
   // },
-  // {
-  //   path: "private",
-  //   element: (
-  //     <AuthGuard>
-  //       <DashboardLayout />
-  //     </AuthGuard>
-  //   ),
-  //   children: [
-  //     {
-  //       path: "",
-  //       element: <ProtectedPage />,
-  //     },
-  //   ],
-  // },
+  {
+    path: "private",
+    element: (
+      <AuthGuard>
+        <DashboardLayout />
+      </AuthGuard>
+    ),
+    children: [
+      {
+        path: "",
+        element: <ProtectedPage />,
+      },
+    ],
+  },
   // {
   //   path: "*",
   //   element: <AuthLayout />,

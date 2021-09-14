@@ -7,9 +7,9 @@ import useAuth from "../../hooks/useAuth";
 function AuthGuard({ children }) {
   const { isAuthenticated } = useAuth();
 
-  if (!isAuthenticated) {
-    return <Navigate to="/auth/sign-in" />;
-  }
+  // if (!isAuthenticated) {
+  //   return <Navigate to="/auth/sign-in" />;
+  // }
 
   return <React.Fragment>{children}</React.Fragment>;
 }

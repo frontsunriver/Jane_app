@@ -1,7 +1,8 @@
 import { createContext, useEffect, useReducer } from "react";
 
-import axios from "../utils/axios";
+// import axios from "../utils/axios";
 import { isValidToken, setSession } from "../utils/jwt";
+import axios from "axios";
 
 const INITIALIZE = "INITIALIZE";
 const SIGN_IN = "SIGN_IN";
@@ -71,6 +72,7 @@ function AuthProvider({ children }) {
             },
           });
         } else {
+          console.log("new login");
           dispatch({
             type: INITIALIZE,
             payload: {
@@ -95,12 +97,11 @@ function AuthProvider({ children }) {
   }, []);
 
   const signIn = async (email, password) => {
-    const response = await axios.post("/api/auth/sign-in", {
+    const response = await axios.post(``, {
       email,
       password,
     });
     const { accessToken, user } = response.data;
-
     setSession(accessToken);
     dispatch({
       type: SIGN_IN,
@@ -108,6 +109,17 @@ function AuthProvider({ children }) {
         user,
       },
     });
+    // let dict = { email, password };
+    // axios.post("http://test", dict).then((resp) => {
+    //   const { accessToken, user } = resp.data;
+    //   setSession(accessToken);
+    //   dispatch({
+    //     type: SIGN_IN,
+    //     payload: {
+    //       user,
+    //     },
+    //   });
+    // });
   };
 
   const signOut = async () => {

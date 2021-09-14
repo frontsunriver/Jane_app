@@ -36,61 +36,120 @@ const BrandIcon = styled(Logo)`
 
 const AppBarComponent = () => (
   <React.Fragment>
+    <Container>
     <AppBar position="relative" color="transparent" elevation={0}>
       <Toolbar>
         <Container>
           <Grid container alignItems="center">
             <Grid item>
-              <Brand>
+              {/* <Brand>
                 <BrandIcon />
                 Material App
-              </Brand>
-            </Grid>
-            <Grid item xs />
-            <Grid item>
+              </Brand> */}
               <Hidden mdDown>
                 <Button
                   ml={2}
-                  color="inherit"
+                  color="primary"
                   component={Link}
-                  to="/dashboard/analytics"
-                  target="_blank"
+                  to="/user/signin"
                 >
-                  Live Preview
+                  Home
                 </Button>
                 <Button
                   ml={2}
                   color="inherit"
                   component={Link}
-                  to="/documentation/welcome"
-                  target="_blank"
+                  to="/user/signup"
                 >
-                  Documentation
+                  Features
                 </Button>
                 <Button
                   ml={2}
                   color="inherit"
                   component={Link}
                   to="/documentation/support"
-                  target="_blank"
                 >
-                  Support
+                  Pricing
+                </Button>
+                <Button
+                  ml={2}
+                  color="inherit"
+                  component={Link}
+                  to="/documentation/support"
+                >
+                  Videos
+                </Button>
+                <Button
+                  ml={2}
+                  color="inherit"
+                  component={Link}
+                  to="/documentation/support"
+                >
+                  Guid
+                </Button>
+                <Button
+                  ml={2}
+                  color="inherit"
+                  component={Link}
+                  to="/documentation/support"
+                >
+                  Blog
+                </Button>
+                <Button
+                  ml={2}
+                  color="inherit"
+                  component={Link}
+                  to="/documentation/support"
+                >
+                  About
+                </Button>
+                <Button
+                  ml={2}
+                  color="inherit"
+                  component={Link}
+                  to="/documentation/support"
+                >
+                  Jobs
                 </Button>
               </Hidden>
-              <Button
-                ml={2}
-                color="primary"
-                variant="contained"
-                href="https://material-ui.com/store/items/material-app/"
-                target="_blank"
-              >
-                Get Material App
-              </Button>
+            </Grid>
+            <Grid item xs />
+            <Grid item>
+              <Hidden mdDown>
+                <Button
+                  ml={2}
+                  color="primary"
+                  variant="contained"
+                  component={Link}
+                  to="/user/signin"
+                >
+                  Signin
+                </Button>
+                <Button
+                  ml={2}
+                  color="success"
+                  variant="contained"
+                  component={Link}
+                  to="/user/signup"
+                >
+                  Signup
+                </Button>
+                <Button
+                  ml={2}
+                  color="inherit"
+                  variant="contained"
+                  component={Link}
+                  to="/documentation/support"
+                >
+                  Book A Demo
+                </Button>
+              </Hidden>
             </Grid>
           </Grid>
         </Container>
       </Toolbar>
     </AppBar>
+    </Container>
   </React.Fragment>
 );
 
