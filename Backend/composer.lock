@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6cadd819a6415b190ae2704ced6e6c8b",
+    "content-hash": "ab0e14ccf73d75d0da5270a56d51c32a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2049,6 +2049,72 @@
                 }
             ],
             "time": "2021-08-28T21:27:29+00:00"
+        },
+        {
+            "name": "phpsa/laravel-api-controller",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpsa/laravel-api-controller.git",
+                "reference": "d15f1096011f37df0b2b0e5218b81b898f024656"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpsa/laravel-api-controller/zipball/d15f1096011f37df0b2b0e5218b81b898f024656",
+                "reference": "d15f1096011f37df0b2b0e5218b81b898f024656",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^6.0|^7.30.3|^8.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "doctrine/dbal": "~2.3",
+                "laravel/legacy-factories": "^1.0.4",
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Phpsa\\LaravelApiController\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Phpsa\\LaravelApiController\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Craig G Smith",
+                    "email": "vxdhost@gmail.com"
+                }
+            ],
+            "description": "A laravel api base controller with basic CRUD mapped to the model ",
+            "keywords": [
+                "api",
+                "controller",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/phpsa/laravel-api-controller/issues",
+                "source": "https://github.com/phpsa/laravel-api-controller/tree/v2.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/phpsa",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-09-07T20:40:24+00:00"
         },
         {
             "name": "psr/container",
