@@ -8,6 +8,7 @@ import async from "./components/Async";
 // Layouts
 import AuthLayout from "./layouts/Auth";
 import DashboardLayout from "./layouts/Dashboard";
+import UserDashboardLayout from './layouts/UserDashboard';
 import DocLayout from "./layouts/Doc";
 import PresentationLayout from "./layouts/Presentation";
 
@@ -49,7 +50,8 @@ import MaterialIcons from "./pages/icons/MaterialIcons";
 import Blank from "./pages/pages/Blank";
 import InvoiceDetails from "./pages/pages/InvoiceDetails";
 import InvoiceList from "./pages/pages/InvoiceList";
-import Orders from "./pages/pages/Orders";
+import Users from "./pages/pages/Users";
+import Stuff from "./pages/pages/Stuff";
 import Pricing from "./pages/pages/Pricing";
 import Settings from "./pages/pages/Settings";
 import Projects from "./pages/pages/Projects";
@@ -97,7 +99,8 @@ const Formik = async(() => import("./pages/forms/Formik"));
 // Icon components
 const FeatherIcons = async(() => import("./pages/icons/FeatherIcons"));
 const Profile = async(() => import("./pages/pages/Profile"));
-const Tasks = async(() => import("./pages/pages/Tasks"));
+const AdminUser = async(() => import("./pages/pages/AdminUser"));
+const AdminAdd = async(() => import("./pages/pages/AdminAdd"));
 const Calendar = async(() => import("./pages/pages/Calendar"));
 
 // Table components
@@ -121,24 +124,42 @@ const routes = [
       },
     ],
   },
-  // {
-  //   path: "dashboard",
-  //   element: <DashboardLayout />,
-  //   children: [
-  //     {
-  //       path: "default",
-  //       element: <Default />,
-  //     },
-  //     {
-  //       path: "analytics",
-  //       element: <Analytics />,
-  //     },
-  //     {
-  //       path: "saas",
-  //       element: <SaaS />,
-  //     },
-  //   ],
-  // },
+  {
+    path: "dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "default",
+        element: <Default />,
+      },
+      // {
+      //   path: "analytics",
+      //   element: <Analytics />,
+      // },
+      // {
+      //   path: "saas",
+      //   element: <SaaS />,
+      // },
+    ],
+  },
+  {
+    path: "userdashboard",
+    element: <UserDashboardLayout />,
+    children: [
+      {
+        path: "default",
+        element: <Default />,
+      },
+      // {
+      //   path: "analytics",
+      //   element: <Analytics />,
+      // },
+      // {
+      //   path: "saas",
+      //   element: <SaaS />,
+      // },
+    ],
+  },
   // {
   //   path: "pages",
   //   element: <DashboardLayout />,
@@ -189,36 +210,60 @@ const routes = [
   //     },
   //   ],
   // },
-  // {
-  //   path: "orders",
-  //   element: <DashboardLayout />,
-  //   children: [
-  //     {
-  //       path: "",
-  //       element: <Orders />,
-  //     },
-  //   ],
-  // },
-  // {
-  //   path: "tasks",
-  //   element: <DashboardLayout />,
-  //   children: [
-  //     {
-  //       path: "",
-  //       element: <Tasks />,
-  //     },
-  //   ],
-  // },
-  // {
-  //   path: "calendar",
-  //   element: <DashboardLayout />,
-  //   children: [
-  //     {
-  //       path: "",
-  //       element: <Calendar />,
-  //     },
-  //   ],
-  // },
+  {
+    path: "users",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "",
+        element: <Users />,
+      },
+    ],
+  },
+  {
+    path: "admin",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "",
+        element: <AdminUser />,
+      },
+      {
+        path: "add",
+        element: <AdminAdd />,
+      },
+    ],
+  },
+  {
+    path: "stuff",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "",
+        element: <Stuff />,
+      },
+    ],
+  },
+  {
+    path: "calendar",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "",
+        element: <Calendar />,
+      },
+    ],
+  },
+  {
+    path: "user",
+    element: <UserDashboardLayout />,
+    children: [
+      {
+        path: "calendar",
+        element: <Calendar />,
+      },
+    ],
+  },
   {
     path: "/user",
     element: <AuthLayout />,

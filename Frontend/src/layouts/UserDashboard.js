@@ -9,7 +9,7 @@ import { spacing } from "@material-ui/system";
 
 import GlobalStyle from "../components/GlobalStyle";
 import Navbar from "../components/navbar/Navbar";
-import dashboardItems from "../components/sidebar/dashboardItems";
+import userdashboardItems from "../components/sidebar/userdashboardItems";
 import Sidebar from "../components/sidebar/Sidebar";
 import Footer from "../components/Footer";
 import Settings from "../components/Settings";
@@ -50,7 +50,7 @@ const MainContent = styled(Paper)`
   }
 `;
 
-const Dashboard = ({ children }) => {
+const UserDashboard = ({ children }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -71,27 +71,27 @@ const Dashboard = ({ children }) => {
             variant="temporary"
             open={mobileOpen}
             onClose={handleDrawerToggle}
-            items={dashboardItems}
+            items={userdashboardItems}
           />
         </Hidden>
         <Hidden mdDown implementation="css">
           <Sidebar
             PaperProps={{ style: { width: drawerWidth } }}
-            items={dashboardItems}
+            items={userdashboardItems}
           />
         </Hidden>
       </Drawer>
       <AppContent>
-        {/* <Navbar onDrawerToggle={handleDrawerToggle} /> */}
+        <Navbar onDrawerToggle={handleDrawerToggle} />
         <MainContent p={isLgUp ? 12 : 5}>
           {children}
           <Outlet />
         </MainContent>
         <Footer />
       </AppContent>
-      {/* <Settings /> */}
+      <Settings />
     </Root>
   );
 };
 
-export default Dashboard;
+export default UserDashboard;

@@ -62,47 +62,6 @@ function createData(id, product, date, total, status, method) {
   return { id, product, date, total, status, method };
 }
 
-const rows = [
-  createData(
-    "000253",
-    "Salt & Pepper Grinder",
-    "2021-01-02",
-    "$32,00",
-    0,
-    "Visa"
-  ),
-  createData("000254", "Backpack", "2021-01-04", "$130,00", 0, "PayPal"),
-  createData(
-    "000255",
-    "Pocket Speaker",
-    "2021-01-04",
-    "$80,00",
-    2,
-    "Mastercard"
-  ),
-  createData("000256", "Glass Teapot", "2021-01-08", "$45,00", 0, "Visa"),
-  createData(
-    "000257",
-    "Unbreakable Water Bottle",
-    "2021-01-09",
-    "$40,00",
-    0,
-    "PayPal"
-  ),
-  createData("000258", "Spoon Saver", "2021-01-14", "$15,00", 0, "Mastercard"),
-  createData("000259", "Hip Flash", "2021-01-16", "$25,00", 1, "Visa"),
-  createData("000260", "Woven Slippers", "2021-01-22", "$20,00", 0, "PayPal"),
-  createData("000261", "Womens Watch", "2021-01-22", "$65,00", 2, "Visa"),
-  createData(
-    "000262",
-    "Over-Ear Headphones",
-    "2021-01-23",
-    "$210,00",
-    0,
-    "Mastercard"
-  ),
-];
-
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -133,12 +92,12 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: "id", alignment: "right", label: "Order ID" },
-  { id: "product", alignment: "left", label: "Product" },
-  { id: "date", alignment: "left", label: "Date" },
-  { id: "total", alignment: "right", label: "Total" },
-  { id: "status", alignment: "left", label: "Status" },
-  { id: "method", alignment: "left", label: "Payment Method" },
+  { id: "id", alignment: "right", label: "User Id" },
+  { id: "name", alignment: "left", label: "Name" },
+  { id: "address", alignment: "left", label: "Address" },
+  { id: "phone", alignment: "right", label: "Phone" },
+  // { id: "status", alignment: "left", label: "Status" },
+  // { id: "method", alignment: "left", label: "Payment Method" },
   { id: "actions", alignment: "right", label: "Actions" },
 ];
 
@@ -200,7 +159,7 @@ const EnhancedTableToolbar = (props) => {
           </Typography>
         ) : (
           <Typography variant="h6" id="tableTitle">
-            Orders
+            Users
           </Typography>
         )}
       </ToolbarTitle>
@@ -230,6 +189,13 @@ function EnhancedTable() {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rows, setRows] = React.useState([]);
+  
+  React.useEffect(() => {
+    fetch("http://localhost:8000/users").then((resp) => resp.json()).then((rows) => {
+      setRows(rows);  
+    });
+  }, [])
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -323,39 +289,9 @@ function EnhancedTable() {
                       </TableCell>
 
                       <TableCell align="right">#{row.id}</TableCell>
-                      <TableCell align="left">{row.product}</TableCell>
-                      <TableCell align="left">{row.date}</TableCell>
-                      <TableCell align="right">{row.total}</TableCell>
-                      <TableCell>
-                        {row.status === 0 && (
-                          <Chip
-                            size="small"
-                            mr={1}
-                            mb={1}
-                            label="Shipped"
-                            shipped={+true}
-                          />
-                        )}
-                        {row.status === 1 && (
-                          <Chip
-                            size="small"
-                            mr={1}
-                            mb={1}
-                            label="Processing"
-                            processing={+true}
-                          />
-                        )}
-                        {row.status === 2 && (
-                          <Chip
-                            size="small"
-                            mr={1}
-                            mb={1}
-                            label="Cancelled"
-                            cancelled={+true}
-                          />
-                        )}
-                      </TableCell>
-                      <TableCell align="left">{row.method}</TableCell>
+                      <TableCell align="left">{row.name}</TableCell>
+                      <TableCell align="left">{row.address}</TableCell>
+                      <TableCell align="right">{row.phone}</TableCell>
                       <TableCell padding="none" align="right">
                         <Box mr={2}>
                           <IconButton aria-label="delete" size="large">
@@ -394,29 +330,26 @@ function EnhancedTable() {
 function OrderList() {
   return (
     <React.Fragment>
-      <Helmet title="Orders" />
+      <Helmet title="Users" />
 
       <Grid justifyContent="space-between" container spacing={10}>
         <Grid item>
           <Typography variant="h3" gutterBottom display="inline">
-            Orders
+            Users
           </Typography>
 
           <Breadcrumbs aria-label="Breadcrumb" mt={2}>
             <Link component={NavLink} to="/">
-              Dashboard
+              Users
             </Link>
-            <Link component={NavLink} to="/">
-              Pages
-            </Link>
-            <Typography>Orders</Typography>
+            <Typography>Users</Typography>
           </Breadcrumbs>
         </Grid>
         <Grid item>
           <div>
             <Button variant="contained" color="primary">
               <AddIcon />
-              New Order
+              New User
             </Button>
           </div>
         </Grid>

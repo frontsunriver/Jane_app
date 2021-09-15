@@ -40,9 +40,16 @@ function SignIn() {
       })}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
         try {
-          await signIn(values.email, values.password);
-          navigate("/private");
+          console.log(values.email);
+          if(values.email === "neymarjohn215@gmail.com"){
+            navigate("/dashboard/default");
+          }else{
+            navigate("/userdashboard/default");
+          }
+          // await signIn(values.email, values.password);
+          
         } catch (error) {
+          navigate("/private");
           const message = error.message || "Something went wrong";
           setStatus({ success: false });
           setErrors({ submit: message });
