@@ -93,9 +93,10 @@ function stableSort(array, comparator) {
 
 const headCells = [
   { id: "id", alignment: "right", label: "User Id" },
-  { id: "name", alignment: "left", label: "Name" },
+  { id: "firstName", alignment: "left", label: "First Name" },
+  { id: "lastName", alignment: "left", label: "Last Name" },
+  { id: "email", alignment: "left", label: "Email" },
   { id: "address", alignment: "left", label: "Address" },
-  { id: "phone", alignment: "right", label: "Phone" },
   // { id: "status", alignment: "left", label: "Status" },
   // { id: "method", alignment: "left", label: "Payment Method" },
   { id: "actions", alignment: "right", label: "Actions" },
@@ -190,10 +191,11 @@ function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, setRows] = React.useState([]);
-  
+  const navigate = useNavigate();
+
   React.useEffect(() => {
-    fetch("http://localhost:8000/users").then((resp) => resp.json()).then((rows) => {
-      setRows(rows);  
+    fetch("http://localhost:8000/admins").then((resp) => resp.json()).then((rows) => {
+      setRows(rows);
     });
   }, [])
 
@@ -247,12 +249,17 @@ function EnhancedTable() {
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   const handleDelete = async (id) => {
-    await fetch("http://localhost:8000/users/" + id, {
+    await fetch("http://localhost:8000/admins/" + id, {
       method: 'DELETE'
     });
 
     const newRows = rows.filter(row => row.id !== id)
     setRows(newRows);
+  }
+
+  const handleDetailShow = (row) => {
+    console.log(row);
+    navigate('/admin/detail', { state: row });
   }
 
   return (
@@ -298,15 +305,16 @@ function EnhancedTable() {
                       </TableCell>
 
                       <TableCell align="right">#{row.id}</TableCell>
-                      <TableCell align="left">{row.name}</TableCell>
+                      <TableCell align="left">{row.firstName}</TableCell>
+                      <TableCell align="left">{row.lastName}</TableCell>
+                      <TableCell align="left">{row.email}</TableCell>
                       <TableCell align="left">{row.address}</TableCell>
-                      <TableCell align="right">{row.phone}</TableCell>
                       <TableCell padding="none" align="right">
                         <Box mr={2}>
-                          <IconButton aria-label="delete" size="large" onClick={() => handleDelete(row.id) }>
+                          <IconButton aria-label="delete" size="large" onClick={() => handleDelete(row.id)}>
                             <ArchiveIcon />
                           </IconButton>
-                          <IconButton aria-label="details" size="large">
+                          <IconButton aria-label="details" size="large" onClick={() => handleDetailShow(row)}>
                             <RemoveRedEyeIcon />
                           </IconButton>
                         </Box>

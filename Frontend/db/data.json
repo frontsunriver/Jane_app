@@ -1,4 +1,16 @@
 {
+  "admins": [
+    {
+      "firstName": "Neymar",
+      "lastName": "John",
+      "email": "neymarjohn215@gmail.com",
+      "address": "Los Angels",
+      "state": "Los",
+      "city": "3th street",
+      "zip": "80110",
+      "id": 1
+    }
+  ],
   "users": [],
   "stuff": [
     {

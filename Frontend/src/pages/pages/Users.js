@@ -93,7 +93,9 @@ function stableSort(array, comparator) {
 
 const headCells = [
   { id: "id", alignment: "right", label: "User Id" },
-  { id: "name", alignment: "left", label: "Name" },
+  { id: "firstName", alignment: "left", label: "First Name" },
+  { id: "lastName", alignment: "left", label: "Last Name" },
+  { id: "email", alignment: "left", label: "Email" },
   { id: "address", alignment: "left", label: "Address" },
   { id: "phone", alignment: "right", label: "Phone" },
   // { id: "status", alignment: "left", label: "Status" },
@@ -190,10 +192,10 @@ function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, setRows] = React.useState([]);
-  
+
   React.useEffect(() => {
     fetch("http://localhost:8000/users").then((resp) => resp.json()).then((rows) => {
-      setRows(rows);  
+      setRows(rows);
     });
   }, [])
 
@@ -246,6 +248,15 @@ function EnhancedTable() {
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
+  const handleDelete = async (id) => {
+    await fetch("http://localhost:8000/users/" + id, {
+      method: 'DELETE'
+    });
+
+    const newRows = rows.filter(row => row.id !== id)
+    setRows(newRows);
+  }
+
   return (
     <div>
       <Paper>
@@ -289,12 +300,14 @@ function EnhancedTable() {
                       </TableCell>
 
                       <TableCell align="right">#{row.id}</TableCell>
-                      <TableCell align="left">{row.name}</TableCell>
+                      <TableCell align="left">{row.firstName}</TableCell>
+                      <TableCell align="left">{row.lastName}</TableCell>
+                      <TableCell align="left">{row.email}</TableCell>
                       <TableCell align="left">{row.address}</TableCell>
-                      <TableCell align="right">{row.phone}</TableCell>
+                      <TableCell align="left">{row.phone}</TableCell>
                       <TableCell padding="none" align="right">
                         <Box mr={2}>
-                          <IconButton aria-label="delete" size="large">
+                          <IconButton aria-label="delete" size="large" onClick={() => handleDelete(row.id)}>
                             <ArchiveIcon />
                           </IconButton>
                           <IconButton aria-label="details" size="large">
@@ -345,14 +358,14 @@ function OrderList() {
             <Typography>Users</Typography>
           </Breadcrumbs>
         </Grid>
-        <Grid item>
+        {/* <Grid item>
           <div>
             <Button variant="contained" color="primary">
               <AddIcon />
               New User
             </Button>
           </div>
-        </Grid>
+        </Grid> */}
       </Grid>
 
       <Divider my={6} />

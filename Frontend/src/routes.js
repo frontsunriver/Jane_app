@@ -101,6 +101,7 @@ const FeatherIcons = async(() => import("./pages/icons/FeatherIcons"));
 const Profile = async(() => import("./pages/pages/Profile"));
 const AdminUser = async(() => import("./pages/pages/AdminUser"));
 const AdminAdd = async(() => import("./pages/pages/AdminAdd"));
+const AdminDetail = async(() => import("./pages/pages/AdminDetail"));
 const Calendar = async(() => import("./pages/pages/Calendar"));
 
 // Table components
@@ -231,6 +232,10 @@ const routes = [
       {
         path: "add",
         element: <AdminAdd />,
+      },
+      {
+        path: "detail",
+        element: <AdminDetail />,
       },
     ],
   },

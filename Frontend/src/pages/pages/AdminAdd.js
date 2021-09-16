@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components/macro";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 import {
@@ -30,33 +30,36 @@ const TextField = styled(MuiTextField)(spacing);
 const Button = styled(MuiButton)(spacing);
 
 function Private() {
-    const [clickable, setClickable] = useState(false);
-    const [newUser, setNewUser] = useState([]);
-    const nameRef = useRef('');
-    const emailRef = useRef('');
-    const addressRef = useRef('');
-    const cityRef = useRef('');
-    const stateRef = useRef('');
-    const zipRef = useRef('');
+  const [clickable, setClickable] = useState(false);
+  const [newUser, setNewUser] = useState([]);
+  const nameRef = useRef('');
+  const emailRef = useRef('');
+  const addressRef = useRef('');
+  const cityRef = useRef('');
+  const stateRef = useRef('');
+  const zipRef = useRef('');
+  const navigate = useNavigate();
 
-    const handleAdd = (e) => {
-        e.preventDefault();
-        setClickable(true);
-        let name = newUser.firstName;
-        let email = newUser.email;
-        let address = newUser.address;
-        let city = newUser.city;
-        let state = newUser.state;
-        let zip = newUser.zip;
-        fetch('http://localhost:8000/users', {
-            method: 'POST',
-            headers: {"Content-type": "application/json"},
-            body: JSON.stringify({name, email, address})
-        }).then(() => {
-            setClickable(false);
-            setNewUser([]);
-        });
-    }
+  const handleAdd = (e) => {
+    e.preventDefault();
+    setClickable(true);
+    let firstName = newUser.firstName;
+    let lastName = newUser.lastName;
+    let email = newUser.email;
+    let address = newUser.address;
+    let city = newUser.city;
+    let state = newUser.state;
+    let zip = newUser.zip;
+    fetch('http://localhost:8000/admins', {
+      method: 'POST',
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ firstName, lastName, email, address, state, city, zip })
+    }).then(() => {
+      setClickable(false);
+      setNewUser([]);
+      navigate('/admin')
+    });
+  }
   return (
     <Card mb={6}>
       <CardContent>
@@ -75,10 +78,10 @@ function Private() {
               ref={nameRef}
               my={2}
               onChange={(event) => {
-                  setNewUser({
-                      ...newUser,
-                      [event.target.name] : event.target.value
-                  });
+                setNewUser({
+                  ...newUser,
+                  [event.target.name]: event.target.value
+                });
               }}
             />
           </Grid>
@@ -92,10 +95,10 @@ function Private() {
               my={2}
               onChange={(event) => {
                 setNewUser({
-                    ...newUser,
-                    [event.target.name] : event.target.value
+                  ...newUser,
+                  [event.target.name]: event.target.value
                 });
-            }}
+              }}
             />
           </Grid>
         </Grid>
@@ -111,10 +114,10 @@ function Private() {
           my={2}
           onChange={(event) => {
             setNewUser({
-                ...newUser,
-                [event.target.name] : event.target.value
+              ...newUser,
+              [event.target.name]: event.target.value
             });
-            }}
+          }}
         />
 
         <TextField
@@ -127,10 +130,10 @@ function Private() {
           my={2}
           onChange={(event) => {
             setNewUser({
-                ...newUser,
-                [event.target.name] : event.target.value
+              ...newUser,
+              [event.target.name]: event.target.value
             });
-        }}
+          }}
         />
 
         <Grid container spacing={6}>
@@ -145,10 +148,10 @@ function Private() {
               my={2}
               onChange={(event) => {
                 setNewUser({
-                    ...newUser,
-                    [event.target.name] : event.target.value
+                  ...newUser,
+                  [event.target.name]: event.target.value
                 });
-            }}
+              }}
             />
           </Grid>
           <Grid item md={4}>
@@ -162,10 +165,10 @@ function Private() {
               my={2}
               onChange={(event) => {
                 setNewUser({
-                    ...newUser,
-                    [event.target.name] : event.target.value
+                  ...newUser,
+                  [event.target.name]: event.target.value
                 });
-            }}
+              }}
             />
           </Grid>
           <Grid item md={2}>
@@ -179,10 +182,10 @@ function Private() {
               my={2}
               onChange={(event) => {
                 setNewUser({
-                    ...newUser,
-                    [event.target.name] : event.target.value
+                  ...newUser,
+                  [event.target.name]: event.target.value
                 });
-            }}
+              }}
             />
           </Grid>
         </Grid>
@@ -209,7 +212,7 @@ function AdminAdd() {
           Users
         </Link>
         <Link component={NavLink} to="/">
-          
+          Admin
         </Link>
         <Typography>Add</Typography>
       </Breadcrumbs>
